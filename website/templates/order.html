@@ -1,0 +1,121 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{%static 'normarlize.css'%}" />
+    <link rel="stylesheet" href="{%static 'order.css'%}" />
+    <title>Thuê VPS</title>
+  </head>
+  <body>
+    <div class="order_container">
+      <div class="sidebar order_sidebar">
+        <div class="sidebar_user">
+          <img src="{%static 'assets/images/avatar.svg'%}" alt="" />
+          <div class="name">
+            Xin chào, <span style="font-weight: bold">Nguyễn Hoàng Anh</span>
+          </div>
+          <a href="#">Chỉnh sửa thông tin</a>
+        </div>
+        <a href="{%url 'shop:home'%}" class="sidebar_item" id="dashboard"
+          >Dashboard</a
+        >
+        <a href="{%url 'shop:order'%}" class="sidebar_item" id="Order"
+          >Thuê VPS</a
+        >
+        <a href="{%url 'shop:VPSList'%}" class="sidebar_item" id="VPSList"
+          >Danh sách VPS</a
+        >
+        <a
+          href="{%url 'shop:invoiceList'%}"
+          class="sidebar_item"
+          id="invociesList"
+          >Danh sách hoá đơn</a
+        >
+      </div>
+      <div class="order_content">
+        <form action="{%url 'shop:invoiceConfirm'%}" method="post">
+          {%csrf_token%}
+          <div class="order_step">
+            <div class="header">Chọn loại server</div>
+            <div class="VPSTypeList">
+              <div class="VPSType selected">
+                <div class="header">Premium Cloud VPS</div>
+                <div class="details">
+                  Premium VPS comes with dedicated IP and exceptional processing
+                  power. It will be ideal for Web server and any tool that
+                  requires dedicated IP to work.
+                </div>
+              </div>
+              <div class="VPSType">
+                <div class="header">NAT Cloud VPS</div>
+                <div class="details">
+                  NAT VPS shares the same IP with other VPS on a private LAN.
+                  You will save the IP cost without losing processing power. It
+                  is designed for tools that does not need dedicated IP or to
+                  test your code.
+                </div>
+              </div>
+              <div class="VPSType">
+                <div class="header">LIVE Cloud VPS</div>
+                <div class="details">
+                  Livestream Cloud VPS is optimized for livestreaming purpose on
+                  Youtube, Facebook, Twitch... platforms. Equiped with the
+                  latest generation SSD disk, strong CPU power, and lots of
+                  bandwidth, Livestream Cloud VPS will deliver a ultimately
+                  stable livestream to your audiences.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="order_step step_2">
+            <div class="header">Chọn loại VPS</div>
+            <div class="VPSList">
+              <div class="VPSPlan selected">
+                <div class="name">N1</div>
+                <div class="details">
+                  - <span>1</span> CPU <br />
+                  - <span>2</span> GB RAM <br />
+                  - <span>20</span> GB SSD <br />
+                </div>
+                <div class="price">60.000 VND</div>
+              </div>
+              <div class="VPSPlan">
+                <div class="name">N1</div>
+                <div class="details">
+                  - <span>1</span> CPU <br />
+                  - <span>2</span> GB RAM <br />
+                  - <span>20</span> GB SSD <br />
+                </div>
+                <div class="price">60.000 VND</div>
+              </div>
+              <div class="VPSPlan">
+                <div class="name">N1</div>
+                <div class="details">
+                  - <span>1</span> CPU <br />
+                  - <span>2</span> GB RAM <br />
+                  - <span>20</span> GB SSD <br />
+                </div>
+                <div class="price">60.000 VND</div>
+              </div>
+            </div>
+          </div>
+          <div class="order_step">
+            <div class="header">Chọn OS</div>
+            <div class="OSList">
+              <div class="OS blue selected">Window Server 2012R2 V18.1</div>
+              <div class="OS blue">Window Server 2019V4</div>
+              <div class="OS">CENT OS 7.9 X64 V2</div>
+              <div class="OS">UBUNTU SERVER 20.04 V3</div>
+            </div>
+          </div>
+          <div class="order_next">
+            <button class="green">Lập hoá đơn</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

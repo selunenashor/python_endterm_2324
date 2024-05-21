@@ -1,0 +1,56 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'normarlize.css' %}" />
+    <link rel="stylesheet" href="{% static 'register.css' %}" />
+
+    <title>Register</title>
+  </head>
+  <body>
+    <div class="register_container">
+      <div class="register_field">
+        <input
+          type="text"
+          name=""
+          id="register_account_input"
+          placeholder="Tài khoản"
+        />
+        <input
+          type="password"
+          name=""
+          id="register_password_input"
+          placeholder="Mật khẩu"
+        />
+        <input
+          type="password"
+          name=""
+          id="register_password_input_repeat"
+          placeholder="Nhập lại mật khẩu"
+        />
+        <input
+          type="email"
+          name=""
+          id="register_email_input"
+          placeholder="Địa chỉ email"
+        />
+        <input
+          type="number"
+          name=""
+          id="register_phone_input"
+          placeholder="Số điện thoại"
+        />
+      </div>
+      <div class="register_button_field">
+        <button class="green" type="submit">Đăng kí</button>
+        <form action="{% url 'shop:login'%}" method="post">
+          {% csrf_token %}
+          <button class="orange">Quay về đăng nhập</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

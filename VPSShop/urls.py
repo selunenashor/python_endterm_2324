@@ -20,4 +20,5 @@ from django.urls import include,path
 urlpatterns = [
     path('poll/', include('pools.urls')),
     path('admin/', admin.site.urls),
+    path('', include('website.urls'))
 ]

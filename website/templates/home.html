@@ -1,0 +1,61 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'normarlize.css' %}" />
+    <link rel="stylesheet" href="{% static 'home.css' %}" />
+    <title>Dashboard</title>
+  </head>
+  <body>
+    <div class="dashboard_container">
+      <div class="sidebar dashboard_sidebar">
+        <div class="sidebar_user">
+          <img src="{% static 'assets/images/avatar.svg' %}" alt="" />
+          <div class="name">
+            Xin chào, <span style="font-weight: bold">Nguyễn Hoàng Anh</span>
+          </div>
+          <a href="#">Chỉnh sửa thông tin</a>
+        </div>
+        <a href="{%url 'shop:home'%}" class="sidebar_item" id="dashboard"
+          >Dashboard</a
+        >
+        <a href="{%url 'shop:order'%}" class="sidebar_item" id="Order"
+          >Thuê VPS</a
+        >
+        <a href="{%url 'shop:VPSList'%}" class="sidebar_item" id="VPSList"
+          >Danh sách VPS</a
+        >
+        <a
+          href="{%url 'shop:invoiceList'%}"
+          class="sidebar_item"
+          id="invociesList"
+          >Danh sách hoá đơn</a
+        >
+      </div>
+      <div class="dashboard_content">
+        <div class="dashboard_summary_list">
+          <div class="dashboard_card">
+            <div class="name">Tổng số VPS</div>
+            <div class="number">1</div>
+            <a href="#" class="details">
+              <span style="color: #1a73e8">1</span> VPS đang hoạt động
+            </a>
+            <a href="#" class="details">
+              <span style="color: #f44335">0</span> VPS sẽ hết hạn sau 3 ngày
+            </a>
+          </div>
+          <div class="dashboard_card">
+            <div class="name">Tổng số hoá đơn</div>
+            <div class="number">28</div>
+            <a href="#" class="details">
+              <span style="color: #fb8c00">0</span> hoá đơn đang chờ thanh toán
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

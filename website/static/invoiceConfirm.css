@@ -1,0 +1,148 @@
+.invoice_container {
+    display         : flex;
+    flex-wrap       : nowrap;
+    background-color: #f0f2f5;
+}
+
+.sidebar {
+    width           : 20%;
+    max-width       : 300px;
+    min-width       : 200px;
+    background-image: linear-gradient(195deg, #42424a 0%, #191919 100%);
+    color           : white;
+    padding         : 24px 12px;
+    height          : 100vh;
+}
+
+.sidebar .sidebar_user {
+    text-align   : center;
+    margin-bottom: 40px;
+}
+
+.sidebar .sidebar_user>* {
+    margin-bottom: 24px;
+}
+
+.sidebar .sidebar_user img {
+    width: 100px;
+}
+
+.sidebar .sidebar_user a {
+    font-weight: bold;
+}
+
+.sidebar .sidebar_user a:hover {
+    text-decoration: underline;
+}
+
+
+.sidebar .sidebar_item {
+    display      : block;
+    padding      : 16px 8px;
+    margin       : 4px 8px;
+    border-radius: 10px;
+}
+
+.order_sidebar #order,
+.sidebar_item:hover {
+    background-color: rgb(199, 199, 199, .2)
+}
+
+.invoice_container>.invoice_content_container {
+    display        : flex;
+    justify-content: center;
+    align-items    : center;
+    width          : 80%;
+}
+
+.invoice_content {
+    width           : fit-content;
+    height          : fit-content;
+    padding         : 24px 64px;
+    background-color: white;
+}
+
+
+
+.invoice_content .invoice_header {
+    font-weight: bold;
+    text-align : center;
+    font-size  : 24px;
+}
+
+.invoice_content .invoice_details>div {
+    margin-bottom: 8px;
+}
+
+
+.invoice_content .invoice_details>div span {
+    font-size  : 24px;
+    font-weight: bold;
+    color      : #ff6000;
+}
+
+.invoice_content .invoice_inputs>div {
+    margin-bottom: 12px;
+}
+
+.invoice_content .invoice_inputs>div>div {
+    margin-bottom: 6px;
+}
+
+.invoice_content .invoice_inputs input {
+    padding     : 8px;
+    border-left : 0;
+    border-right: 0;
+    border-top  : 0;
+    color       : #ff6000;
+    font-size   : 24px;
+    font-weight : bold;
+}
+
+.invoice_content .invoice_inputs input:focus {
+    border-left  : 0;
+    border-right : 0;
+    border-top   : 0;
+    border-bottom: 3px solid #ff6000;
+    outline      : none;
+}
+
+.invoice_content .invoice_price {
+    font-weight: bold;
+}
+
+.invoice_content .invoice_price p {
+    font-size: 32px;
+    color    : #ff6000;
+}
+
+.invoice_content .invoice_payment_method>div {
+    margin-bottom: 16px;
+}
+
+.invoice_content .invoice_payment_method .payment_select {
+    display  : flex;
+    flex-wrap: wrap;
+    gap      : 16px
+}
+
+.invoice_content .invoice_payment_method .payment_select>div {
+    width : 100px;
+    height: 100px;
+    border: 1px solid #ff6000;
+    cursor: pointer;
+}
+
+.invoice_content .invoice_payment_method .payment_select>div.selected {
+    border: 3px solid #ff6000;
+}
+
+.invoice_content .invoice_next {
+    text-align: center;
+}
+
+.invoice_content .invoice_next button {
+    padding       : 24px 48px;
+    font-weight   : bold;
+    text-transform: uppercase;
+}

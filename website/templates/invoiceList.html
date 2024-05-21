@@ -1,0 +1,99 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{%static 'normarlize.css'%}" />
+    <link rel="stylesheet" href="{%static 'invoiceList.css'%}" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="invoiceList_container">
+      <div class="sidebar invociesList_sidebar">
+        <div class="sidebar_user">
+          <img src="{%static 'assets/images/avatar.svg'%}" alt="" />
+          <div class="name">
+            Xin chào, <span style="font-weight: bold">Nguyễn Hoàng Anh</span>
+          </div>
+          <a href="#">Chỉnh sửa thông tin</a>
+        </div>
+        <a href="{%url 'shop:home'%}" class="sidebar_item" id="dashboard"
+          >Dashboard</a
+        >
+        <a href="{%url 'shop:order'%}" class="sidebar_item" id="Order"
+          >Thuê VPS</a
+        >
+        <a href="{%url 'shop:VPSList'%}" class="sidebar_item" id="VPSList"
+          >Danh sách VPS</a
+        >
+        <a
+          href="{%url 'shop:invoiceList'%}"
+          class="sidebar_item"
+          id="invociesList"
+          >Danh sách hoá đơn</a
+        >
+      </div>
+      <div class="invoiceList_content">
+        <div class="show">
+          Hiển thị
+          <span>
+            <select name="number" id="number">
+              <option value="10">10</option>
+              <option value="20">20</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
+            </select>
+          </span>
+          hoá đơn/trang
+        </div>
+        <div class="table">
+          <div class="row head">
+            <div class="col">ID</div>
+            <div class="col">Loại hoá đơn</div>
+            <div class="col">Giá</div>
+            <div class="col">Trạng thái</div>
+            <div class="col">Phương thức thanh toán</div>
+            <div class="col">Ngày khởi tạo</div>
+            <div class="col">Ngày hoàn tất</div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <a href="{%url 'shop:invoiceDetail'%}">20240522023246</a>
+            </div>
+            <div class="col"><span class="green">Renew</span></div>
+            <div class="col">60 000 VND</div>
+            <div class="col"><span class="green">Done</span></div>
+            <div class="col">VNPAY</div>
+            <div class="col">2024-05-22</div>
+            <div class="col">2024-05-22</div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <a href="{%url 'shop:invoiceDetail'%}">20240522023246</a>
+            </div>
+            <div class="col"><span class="green">Create</span></div>
+            <div class="col">60 000 VND</div>
+            <div class="col"><span class="gray">canceled</span></div>
+            <div class="col">Not selected</div>
+            <div class="col">2024-05-22</div>
+            <div class="col">2024-05-22</div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <a href="{%url 'shop:invoiceDetail'%}">20240522023246</a>
+            </div>
+            <div class="col"><span class="green">Create</span></div>
+            <div class="col">60 000 VND</div>
+            <div class="col"><span class="blue">pending</span></div>
+            <div class="col">Momo</div>
+            <div class="col">2024-05-22</div>
+            <div class="col">2024-05-22</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

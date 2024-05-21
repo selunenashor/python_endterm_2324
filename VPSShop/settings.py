@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'pools.apps.PoolsConfig'
+    'pools.apps.PoolsConfig',
+    'website.apps.WebsiteConfig'
 ]
 
 MIDDLEWARE = [

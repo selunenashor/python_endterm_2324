@@ -1,0 +1,33 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'normarlize.css' %}" />
+    <link rel="stylesheet" href="{% static 'login.css' %}" />
+
+    <title>Login</title>
+  </head>
+  <body>
+    <div class="login_container">
+      <div class="login_field">
+        <input type="text" id="login_account" placeholder="Tài khoản" />
+        <input
+          type="password"
+          name=""
+          id="login_password"
+          placeholder="Mật khẩu"
+        />
+      </div>
+      <div class="login_button_field">
+        <button class="green" type="submit">Đăng nhập</button>
+        <form action="{% url 'shop:register'%}" method="post">
+          {% csrf_token %}
+          <button class="orange">Đăng kí tài khoản</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

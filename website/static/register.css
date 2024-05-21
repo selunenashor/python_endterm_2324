@@ -1,0 +1,37 @@
+body {
+    background-color: #ddd;
+    display         : flex;
+    justify-content : center;
+    align-items     : center;
+    height          : 100vh;
+}
+
+.register_container {
+    background-color: white;
+    max-width       : 500px;
+    padding         : 20px;
+
+}
+
+.register_container .register_field>input,
+.register_container .register_button_field>button {
+    width: 100%;
+}
+
+.register_container .register_field {
+    margin-bottom: 24px;
+}
+
+.register_container .register_field>input {
+    padding      : 12px 16px;
+    margin       : 8px 0;
+    border       : 1px solid #d2d6da;
+    border-radius: 5px;
+}
+
+.register_container .register_button_field button {
+    text-transform: uppercase;
+    padding       : 12px 16px;
+    margin        : 8px 0;
+    width         : 100%;
+}
