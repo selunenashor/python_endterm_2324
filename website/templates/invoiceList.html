@@ -2,20 +2,8 @@
 <link rel="stylesheet" href="{%static 'invoiceList.css'%}" />
 {%endblock%} {%block title%} Danh sách hoá đơn {%endblock%} {%block content%}
 
-{%if invoiceList%}
+
 <div class="invoiceList_content">
-  <div class="show">
-    Hiển thị
-    <span>
-      <select name="number" id="number">
-        <option value="10">10</option>
-        <option value="20">20</option>
-        <option value="50">50</option>
-        <option value="100">100</option>
-      </select>
-    </span>
-    hoá đơn/trang
-  </div>
   <div class="table">
     <div class="row head">
       <div class="col">ID</div>
@@ -26,6 +14,7 @@
       <div class="col">Ngày khởi tạo</div>
       <div class="col">Ngày hoàn tất</div>
     </div>
+    {%if invoiceList%}
     {%for invoice in invoiceList%}
     <div class="row">
       <div class="col">
@@ -54,7 +43,8 @@
       <div class="col">{{invoice.finished|date:"Y-m-d"}}</div>
     </div>
     {%endfor%}
+    {%endif%}
   </div>
 </div>
-{%endif%}
+
 {%endblock%}

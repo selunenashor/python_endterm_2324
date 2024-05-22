@@ -1,7 +1,6 @@
 {%extends 'layout.html'%} {% load static %} {%block css%}
 <link rel="stylesheet" href="{%static 'invoiceDetail.css'%}" />
 {%endblock%} {%block title%} Chi tiết hoá đơn {%endblock%} {%block content%}
-
 {%if invoice%}
 <div class="invoiceDetail_content">
   <div class="header">Thông tin chi tiết hoá đơn</div>
@@ -12,21 +11,21 @@
     </div>
     <div class="row">
       <div class="name">Loại hoá đơn</div>
-      <div class="value"><span class="green">
-        {%if invoice.type == 1%}CREATE{%endif%}
-        {%if invoice.type == 2%}RENEW{%endif%}
-      </span></div>
+      <div class="value">
+        <span class="green">
+          {%if invoice.type == 1%}CREATE{%endif%}
+          {%if invoice.type == 2%}RENEW{%endif%}
+        </span>
+      </div>
     </div>
     <div class="row">
       <div class="name">Trạng thái</div>
       <div class="value">
         {%if invoice.status == 1%}
         <span class="blue">PENDING</span>
-        {%endif%}
-        {%if invoice.status == 0%}
+        {%endif%} {%if invoice.status == 0%}
         <span class="gray">CANCELED</span>
-        {%endif%}
-        {%if invoice.status == 2%}
+        {%endif%} {%if invoice.status == 2%}
         <span class="green">DONE</span>
         {%endif%}
       </div>
@@ -44,6 +43,21 @@
       <div class="value">{{invoice.price}} VND</div>
     </div>
   </div>
+  {%if invoice.status == 1%}
+  <form action="{%url 'shop:createVPS' invoice.id%}" method="post">
+    {%csrf_token%}
+    <div class="button">
+      <button class="green">Xác nhận thanh toán</button>
+    </div>
+  </form>
+  {%endif%}
+  {%if invoice.status == 2%}
+  <form action="{%url 'shop:renewVPS' invoice.id%}" method="post">
+    {%csrf_token%}
+    <div class="button">
+      <button class="green">Xác nhận thanh toán</button>
+    </div>
+  </form>
+  {%endif%}
 </div>
-{%endif%}
-{%endblock%}
+{%endif%} {%endblock%}

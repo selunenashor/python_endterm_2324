@@ -38,10 +38,27 @@
     
   </div>
   <div class="action">
-    <button class="green">Khởi động</button>
-    <button class="red">Tắt VPS</button>
-    <button class="orange">Gia hạn VPS</button>
-    <button class="red">Huỷ VPS</button>
+    {%if vps.status == 2%}
+    <form action="{%url 'shop:VPSStatusChange' vps.id%}" method="post">
+      {%csrf_token%}
+      <button class="green">Khởi động VPS</button>
+    </form>
+    {%endif%}
+    {%if vps.status == 1%}
+    <form action="{%url 'shop:VPSStatusChange' vps.id%}" method="post">
+      {%csrf_token%}
+      <button class="red">Tắt VPS</button>
+    </form>
+    {%endif%}
+    <form action="{%url 'shop:VPSRenew' vps.id%}" method="post">
+      {%csrf_token%}
+      <button class="orange" id="renew">Gia hạn VPS</button>
+    </form>
+    <form action="{%url 'shop:VPSDelete' vps.id%}" method="post">
+      {%csrf_token%}
+      <button class="red">Huỷ VPS</button>
+    </form>
   </div>
 </div>
+
 {%endif%} {%endblock%}

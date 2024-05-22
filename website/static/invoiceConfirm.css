@@ -66,25 +66,19 @@
     color    : #ff6000;
 }
 
-.invoice_payment_method>div {
-    margin-bottom: 16px;
+.invoice_payment_method{
+    display: flex;
+    gap: 32px;
+    margin-bottom: 32px
 }
 
-.invoice_payment_method .payment_select {
-    display  : flex;
-    flex-wrap: wrap;
-    gap      : 16px
+.invoice_payment_method div{
+    display: flex;
+    align-items: center;
 }
 
-.invoice_payment_method .payment_select>div {
-    width : 100px;
-    height: 100px;
-    border: 1px solid #ff6000;
-    cursor: pointer;
-}
-
-.invoice_payment_method .payment_select>div.selected {
-    border: 3px solid #ff6000;
+.invoice_payment_method select{
+    padding: 8px 16px;
 }
 
 .invoice_next {

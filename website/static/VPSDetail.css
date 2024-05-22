@@ -30,6 +30,11 @@
     font-weight: bold;
 }
 
+.action{
+    display: flex;
+    gap: 16px
+}
+
 .action button {
     padding: 12px;
 }

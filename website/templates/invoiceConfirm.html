@@ -2,45 +2,61 @@
 <link rel="stylesheet" href="{%static 'invoiceConfirm.css'%}" />
 {%endblock%} {%block title%} Kiểm tra hoá đơn {%endblock%} {%block content%}
 
+{%if data and form%}
 <div class="invoice_content">
   <div class="form">
     <div class="invoice_header">Chi tiết hoá đơn</div>
     <hr />
-    <form action="{%url 'shop:invoiceDetail'%}" method="post">
+    <form action="{%url 'shop:VPSRenewComplete'%}" method="post">
       {%csrf_token%}
+      {{ form.type_invoice }}
+      {{ form.type_VPS }}
+      {{ form.plan }}
+      {{ form.CPU }}
+      {{ form.RAM }}
+      {{ form.SSD }}
+      {{ form.OS }}
+      {{ form.price }}
+      {{ form.paymentMethod }}
+      {{ form.totalPrice }}
+      {{form.idUser}}
+      {{form.ipVPS}}
       <div class="invoice_details">
-        <div class="invoice_VPSType">NAT VPS</div>
-        <div class="invoice_VPSPlan">N1</div>
-        <div class="invoice_CPU"><span>1</span> CPU Core(s)</div>
-        <div class="invoice_RAM"><span>2</span> GB RAM</div>
-        <div class="invoice_SSD"><span>20</span> GB SSD</div>
-        <div class="invoice_OS">Window Server 2012R2 v18.1</div>
+        <div class="invoice_VPSType">{{data.type_VPS}} - {{data.plan}}</div>
+        {% if data.type_invoice == 2%}
+        <div class="invoice_VPSIP" style="font-weight: bold;font-size: 24px;">{{data.ip_VPS}}</div>
+        {%endif%}
+        <div class="invoice_CPU"><span>{{data.CPU}}</span> CPU Core(s)</div>
+        <div class="invoice_RAM"><span>{{data.RAM}}</span> GB RAM</div>
+        <div class="invoice_SSD"><span>{{data.SSD}}</span> GB SSD</div>
+        <div class="invoice_OS">{{data.OS}}</div>
       </div>
       <hr />
       <div class="invoice_inputs">
+        {% if data.type_invoice == 1%}
         <div class="quantity_input">
           <div>Số lượng:</div>
           <input type="number" name="quantity" id="quantity" value="1" />
         </div>
+        {%endif%}
         <div class="time_input">
           <div>Thời gian (tháng)</div>
-          <input type="number" name="time" id="time" value="1" />
+          {{form.time}}
         </div>
       </div>
       <hr />
       <div class="invoice_price">
         Tổng giá tiền:
-        <p>60 000 VND</p>
+        <p id="totalPrice">{{data.price}} VND</p>
       </div>
       <hr />
       <div class="invoice_payment_method">
         <div>Chọn phương thức thanh toán</div>
-        <div class="payment_select">
-          <div class="payment selected">VNPAY</div>
-          <div class="payment">VISA</div>
-          <div class="payment">Momo</div>
-          <div class="payment">ZaloPay</div>
-        </div>
+        <select name="paymentSelect" id="paymentSelect">
+          {%for paymentMethod in data.list_payment%}
+          <option value="{{paymentMethod.id}}">{{paymentMethod.name}}</option>
+          {%endfor%}
+        </select>
       </div>
       <div class="invoice_next">
         <button class="green">Xác nhận</button>
@@ -48,5 +64,39 @@
     </form>
   </div>
 </div>
+
+<script>
+  function updateTotalPrice() {
+    const quantityField = document.getElementById('quantity');
+    const timeField = document.getElementById('id_time');
+    const basePrice = {{ data.price }};
+    
+    let quantity = 1; 
+    if (quantityField) {
+        quantity = quantityField.value;
+    }
+    
+    const time = timeField.value;
+    const totalPrice = quantity * time * basePrice;
+
+    document.getElementById('totalPrice').innerText = totalPrice + ' VND';
+    document.getElementById('id_totalPrice').value = totalPrice
+}
+const quantityField = document.getElementById('quantity');
+const timeField = document.getElementById('id_time');
+const paymentSelect = document.getElementById('paymentSelect');
+
+if (quantityField) {
+    quantityField.addEventListener('change', updateTotalPrice);
+}
+timeField.addEventListener('change', updateTotalPrice);
+
+paymentSelect.addEventListener('change', function() {
+    document.getElementById('id_paymentMethod').value = this.value;
+});
+
+
+</script>
+{%endif%}
 
 {%endblock%}

@@ -1,7 +1,9 @@
 import re
+from datetime import datetime
+import random
+from pytz import timezone
 from django import forms
-from django.contrib.auth import authenticate
-from .models import CustomUser
+from .models import CustomUser, PaymentMethod
 
 
 class LoginForm(forms.Form):
@@ -80,3 +82,59 @@ class RegisterForm(forms.Form):
             }
 
         }
+
+
+class RenewForm(forms.Form):
+    type_invoice = forms.IntegerField(widget=forms.HiddenInput())
+    type_VPS = forms.CharField(widget=forms.HiddenInput())
+    plan = forms.CharField(widget=forms.HiddenInput())
+    CPU = forms.IntegerField(widget=forms.HiddenInput())
+    RAM = forms.IntegerField(widget=forms.HiddenInput())
+    SSD = forms.IntegerField(widget=forms.HiddenInput())
+    OS = forms.CharField(widget=forms.HiddenInput())
+    price = forms.IntegerField(widget=forms.HiddenInput())
+    paymentMethod = forms.IntegerField(widget=forms.HiddenInput())
+    quantity = forms.IntegerField(widget=forms.NumberInput())
+    time = forms.IntegerField(widget=forms.NumberInput())
+    totalPrice = forms.IntegerField(widget=forms.HiddenInput())
+    idUser = forms.IntegerField(widget=forms.HiddenInput())
+    ipVPS = forms.CharField(widget=forms.HiddenInput())
+
+    def getInvoiceData(self):
+        hanoi = timezone('Asia/Saigon')
+        current_time = datetime.now(hanoi)
+        current_date = current_time.strftime("%Y%m%d")
+        random_digits = ''.join([str(random.randint(0, 9)) for _ in range(6)])
+        id = current_date + random_digits
+        VPSType = self.data.get('plan')
+        paymentMethod = PaymentMethod.objects.get(pk = self.data.get('paymentMethod')).name
+        return {
+            'id': id,
+            'type': self.data.get('type_invoice'),
+            'price': self.data.get('totalPrice'),
+            'VPSType': VPSType,
+            'status': 1,
+            'paymentMethod': paymentMethod,
+            'createAt': current_time,
+            'finished': current_time,
+            'id_user': self.data.get('idUser'),
+            'targetVPS': self.data.get('ipVPS'),
+            'quantity': self.data.get('quantity'),
+            'time':self.data.get('time'),
+            'OS': self.data.get('OS')
+        }
+
+class BaseNewVPSOrderForm(forms.Form):
+    typeTemplate = forms.IntegerField(widget=forms.HiddenInput())
+    type = forms.CharField(widget=forms.HiddenInput())
+    OS = forms.IntegerField(widget=forms.HiddenInput())
+
+    def getTypeTemplate(self):
+        return self.data.get('typeTemplate')
+    
+    def getType(self):
+        return self.data.get('type')
+    
+    def getOS(self):
+        return self.data.get('OS')
+    

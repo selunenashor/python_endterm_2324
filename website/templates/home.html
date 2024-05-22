@@ -1,23 +1,22 @@
 {%extends 'layout.html'%} {% load static %} {%block css%}
 <link rel="stylesheet" href="{%static 'home.css'%}" />
 {%endblock%} {%block title%} Dashboard {%endblock%} {%block content%}
+{%if data%}
 <div class="dashboard_summary_list">
   <div class="dashboard_card">
     <div class="name">Tổng số VPS</div>
-    <div class="number">1</div>
-    <a href="#" class="details">
-      <span style="color: #1a73e8">1</span> VPS đang hoạt động
-    </a>
-    <a href="#" class="details">
-      <span style="color: #f44335">0</span> VPS sẽ hết hạn sau 3 ngày
+    <div class="number">{{data.total_vps}}</div>
+    <a href="{%url 'shop:VPSList'%}" class="details">
+      <span style="color: #1a73e8">{{data.total_running}}</span> VPS đang hoạt động
     </a>
   </div>
   <div class="dashboard_card">
     <div class="name">Tổng số hoá đơn</div>
-    <div class="number">28</div>
-    <a href="#" class="details">
-      <span style="color: #fb8c00">0</span> hoá đơn đang chờ thanh toán
+    <div class="number">{{data.total_invoice}}</div>
+    <a href="{%url 'shop:invoiceList'%}" class="details">
+      <span style="color: #fb8c00">{{data.total_invoice_pending}}</span> hoá đơn đang chờ thanh toán
     </a>
   </div>
 </div>
+{%endif%}
 {%endblock%}

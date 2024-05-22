@@ -9,7 +9,7 @@ class CustomUser(models.Model):
     phone = models.TextField(max_length=20, blank=True)
 
     def __str__(self) -> str:
-        return f'({self.id})'
+        return f'({self.username})'
 
 
 class VPSTypeTemplate(models.Model):
@@ -38,13 +38,14 @@ class OSTemplate(models.Model):
     name = models.CharField(max_length=200)
 
     def __str__(self) -> str:
-        return f'({self.id})'
+        return f'({self.name})'
 
 
 class VPS(models.Model):
     id = models.AutoField(primary_key=True)
     id_user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     ip = models.CharField(max_length=20, unique=True)
+    type = models.CharField(max_length=50)
     plan = models.CharField(max_length=10)
     CPU = models.IntegerField()
     RAM = models.IntegerField()
@@ -57,7 +58,7 @@ class VPS(models.Model):
     status = models.IntegerField()
 
     def __str__(self) -> str:
-        return f'({self.id})'
+        return f'({self.ip})'
 
 
 class PaymentMethod(models.Model):
@@ -65,7 +66,7 @@ class PaymentMethod(models.Model):
     name = models.CharField(max_length=200)
 
     def __str__(self) -> str:
-        return f'({self.id})'
+        return f'({self.name})'
 
 
 class Invoice(models.Model):
@@ -78,6 +79,10 @@ class Invoice(models.Model):
     paymentMethod = models.CharField(max_length=100)
     createAt = models.DateTimeField()
     finished = models.DateTimeField()
+    targetVPS = models.CharField(max_length=20, null=True)
+    quantity = models.IntegerField()
+    time = models.IntegerField()
+    OS = models.IntegerField()
 
     def __str__(self) -> str:
         return f'({self.id})'

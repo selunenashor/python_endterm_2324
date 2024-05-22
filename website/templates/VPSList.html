@@ -1,19 +1,8 @@
 {%extends 'layout.html'%} {% load static %} {%block css%}
 <link rel="stylesheet" href="{%static 'VPSList.css'%}" />
 {%endblock%} {%block title%} Danh sách VPS {%endblock%} {%block content%}
+
 <div class="VPSList_content">
-  <div class="show">
-    Hiển thị
-    <span>
-      <select name="number" id="number">
-        <option value="10">10</option>
-        <option value="20">20</option>
-        <option value="50">50</option>
-        <option value="100">100</option>
-      </select>
-    </span>
-    VPS/trang
-  </div>
   <div class="table">
     <div class="row head">
       <div class="col">IP</div>
@@ -22,7 +11,7 @@
       <div class="col">Ngày hết hạn</div>
       <div class="col">Trạng thái</div>
     </div>
-    {%if vpsList %} {%for vps in vpsList%}
+    {%if vpsList %}{%for vps in vpsList%}
     <div class="row">
       <div class="col">
         <a href="{%url 'shop:VPSDetail' vps.id%}">{{vps.ip}}</a>

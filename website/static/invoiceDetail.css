@@ -35,3 +35,12 @@
 .action button {
     padding: 12px;
 }
+
+.button{
+    text-align: center;   
+}
+
+.button button{
+    padding: 24px 48px;
+    font-weight: bold;
+}

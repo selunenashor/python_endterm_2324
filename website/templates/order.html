@@ -1,82 +1,111 @@
 {%extends 'layout.html'%} {% load static %} {%block css%}
 <link rel="stylesheet" href="{%static 'order.css'%}" />
-{%endblock%} {%block title%} Thuê VPS {%endblock%} {%block content%}
-<form action="{%url 'shop:invoiceConfirm'%}" method="post">
-  {%csrf_token%}
+{%endblock%} {%block title%} Thuê VPS {%endblock%} {%block content%} {%if vpsTypeTemp%}
+<form action="{%url 'shop:order2' %}" method="post">
+  {%csrf_token%} {{form.typeTemplate}}
+
   <div class="order_step">
     <div class="header">Chọn loại server</div>
     <div class="VPSTypeList">
-      <div class="VPSType selected">
-        <div class="header">Premium Cloud VPS</div>
-        <div class="details">
-          Premium VPS comes with dedicated IP and exceptional processing power.
-          It will be ideal for Web server and any tool that requires dedicated
-          IP to work.
-        </div>
+      {%for element in vpsTypeTemp%}
+      <div class="VPSType" vpsTypeID="{{element.id}}">
+        <div class="header">{{element.name}}</div>
+        <div class="details">{{element.description}}</div>
       </div>
-      <div class="VPSType">
-        <div class="header">NAT Cloud VPS</div>
-        <div class="details">
-          NAT VPS shares the same IP with other VPS on a private LAN. You will
-          save the IP cost without losing processing power. It is designed for
-          tools that does not need dedicated IP or to test your code.
-        </div>
-      </div>
-      <div class="VPSType">
-        <div class="header">LIVE Cloud VPS</div>
-        <div class="details">
-          Livestream Cloud VPS is optimized for livestreaming purpose on
-          Youtube, Facebook, Twitch... platforms. Equiped with the latest
-          generation SSD disk, strong CPU power, and lots of bandwidth,
-          Livestream Cloud VPS will deliver a ultimately stable livestream to
-          your audiences.
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="order_step step_2">
-    <div class="header">Chọn loại VPS</div>
-    <div class="VPSList">
-      <div class="VPSPlan selected">
-        <div class="name">N1</div>
-        <div class="details">
-          - <span>1</span> CPU <br />
-          - <span>2</span> GB RAM <br />
-          - <span>20</span> GB SSD <br />
-        </div>
-        <div class="price">60.000 VND</div>
-      </div>
-      <div class="VPSPlan">
-        <div class="name">N1</div>
-        <div class="details">
-          - <span>1</span> CPU <br />
-          - <span>2</span> GB RAM <br />
-          - <span>20</span> GB SSD <br />
-        </div>
-        <div class="price">60.000 VND</div>
-      </div>
-      <div class="VPSPlan">
-        <div class="name">N1</div>
-        <div class="details">
-          - <span>1</span> CPU <br />
-          - <span>2</span> GB RAM <br />
-          - <span>20</span> GB SSD <br />
-        </div>
-        <div class="price">60.000 VND</div>
-      </div>
-    </div>
-  </div>
-  <div class="order_step">
-    <div class="header">Chọn OS</div>
-    <div class="OSList">
-      <div class="OS blue selected">Window Server 2012R2 V18.1</div>
-      <div class="OS blue">Window Server 2019V4</div>
-      <div class="OS">CENT OS 7.9 X64 V2</div>
-      <div class="OS">UBUNTU SERVER 20.04 V3</div>
+      {%endfor%}
     </div>
   </div>
   <div class="order_next">
-    <button class="green">Lập hoá đơn</button>
+    <button class="green">Tiếp tục</button>
   </div>
 </form>
+{%endif%} {%if vpsType%}
+<form action="{%url 'shop:order3' %}" method="post">
+  {%csrf_token%}{{form.typeTemplate}} {{form.type}}
+  <div class="order_step">
+    <div class="header">Chọn loại VPS</div>
+    <div class="VPSList">
+      {%for element in vpsType%}
+      <div class="VPSPlan" plan-id="{{element.id}}">
+        <div class="name">{{element.id}}</div>
+        <div class="details">
+          - <span>{{element.CPU}}</span> core(s) CPU <br />
+          - <span>{{element.RAM}}</span> GB RAM <br />
+          - <span>{{element.SSD}}</span> GB SSD <br />
+        </div>
+        <div class="price">{{element.pricePerMonth}} VND</div>
+      </div>
+      {%endfor%}
+    </div>
+  </div>
+  <div class="order_next">
+    <button class="green">Tiếp tục</button>
+  </div>
+</form>
+{%endif%} {%if os%}
+<form action="{%url 'shop:orderConfirm'%}" method="post">
+  {%csrf_token%}{{form.typeTemplate}} {{form.type}}{{form.OS}}
+  <div class="order_step">
+    <div class="header">Chọn hệ điều hành</div>
+    <div class="OSList">
+      {%for element in os%}
+      <div class="OS" os-id="{{element.id}}">{{element.name}}</div>
+      {%endfor%}
+    </div>
+  </div>
+  <div class="order_next">
+    <button class="green">Tiếp tục</button>
+  </div>
+</form>
+{%endif%}
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var step1 = document.getElementsByClassName("VPSTypeList");
+    var step2 = document.getElementsByClassName("VPSList");
+    var step3 = document.getElementsByClassName("OSList");
+    if (step1) {
+      var vpsTypes = document.querySelectorAll(".VPSType");
+      vpsTypes.forEach(function (vpsType) {
+        vpsType.addEventListener("click", function () {
+          var vpsTypes = document.querySelectorAll(".VPSType");
+          vpsTypes.forEach(function (vpsType) {
+            vpsType.classList.remove("selected");
+          });
+          vpsType.classList.add("selected");
+          var vpsTypeID = vpsType.getAttribute("vpsTypeID");
+          document.getElementById("id_typeTemplate").value = vpsTypeID;
+        });
+      });
+    }
+    if (step2) {
+      var vpsTypes = document.querySelectorAll(".VPSPlan");
+      vpsTypes.forEach(function (vpsType) {
+        vpsType.addEventListener("click", function () {
+          var vpsTypes = document.querySelectorAll(".VPSPlan");
+          vpsTypes.forEach(function (vpsType) {
+            vpsType.classList.remove("selected");
+          });
+          vpsType.classList.add("selected");
+          var vpsTypeID = vpsType.getAttribute("plan-id");
+          document.getElementById("id_type").value = vpsTypeID;
+        });
+      });
+    }
+    if (step3) {
+      var vpsTypes = document.querySelectorAll(".OS");
+      vpsTypes.forEach(function (vpsType) {
+        vpsType.addEventListener("click", function () {
+          var vpsTypes = document.querySelectorAll(".OS");
+          vpsTypes.forEach(function (vpsType) {
+            vpsType.classList.remove("selected");
+          });
+          vpsType.classList.add("selected");
+          var vpsTypeID = vpsType.getAttribute("os-id");
+          document.getElementById("id_OS").value = vpsTypeID;
+        });
+      });
+    }
+  });
+</script>
 {%endblock%}

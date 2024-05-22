@@ -14,10 +14,11 @@
     display      : flex;
     flex-wrap    : nowrap;
     margin-bottom: 8px;
+    background-color: white;
 }
 
 .table .row:nth-child(2n) {
-    background-color: white;
+    background-color: #f0f2f5;
 }
 
 .table .row.head,
