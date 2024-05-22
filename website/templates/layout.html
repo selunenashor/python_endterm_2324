@@ -1,0 +1,54 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{%static 'normarlize.css'%}" />
+    <link rel="stylesheet" href="{%static 'layout.css'%}" />
+    {%block css%} {%endblock%}
+    <title>{%block title%} {%endblock%}</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="sidebar">
+        <div class="sidebar_user">
+          <img src="{% static 'assets/images/avatar.svg' %}" alt="" />
+          <div class="name">
+            Xin chào, <span style="font-weight: bold">Nguyễn Hoàng Anh</span>
+          </div>
+          <a href="#">Chỉnh sửa thông tin</a>
+        </div>
+        <a
+          href="{%url 'shop:home'%}"
+          class="sidebar_item {%if sidebar_menu%}{% if sidebar_menu == 1 %}selected{% endif %}{% endif %}"
+          id="dashboard"
+          >Dashboard</a
+        >
+        <a
+          href="{%url 'shop:order'%}"
+          class="sidebar_item {%if sidebar_menu%}{% if sidebar_menu == 2 %}selected{% endif %}{% endif %}"
+          id="Order"
+          >Thuê VPS</a
+        >
+        <a
+          href="{%url 'shop:VPSList'%}"
+          class="sidebar_item {%if sidebar_menu%}{% if sidebar_menu == 3 %}selected{% endif %}{% endif %}"
+          id="VPSList"
+          >Danh sách VPS</a
+        >
+        <a
+          href="{%url 'shop:invoiceList'%}"
+          class="sidebar_item {%if sidebar_menu%}{% if sidebar_menu == 4 %}selected{% endif %}{% endif %}"
+          id="invociesList"
+          >Danh sách hoá đơn</a
+        >
+        <a href="{%url 'shop:logout'%}" class="sidebar_item" id="invociesList"
+          >Đăng xuất</a
+        >
+      </div>
+      <div class="content">{%block content%} {%endblock%}</div>
+    </div>
+  </body>
+</html>

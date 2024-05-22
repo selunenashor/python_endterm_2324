@@ -1,86 +1,52 @@
-{%load static%}
+{%extends 'layout.html'%} {% load static %} {%block css%}
+<link rel="stylesheet" href="{%static 'invoiceConfirm.css'%}" />
+{%endblock%} {%block title%} Kiểm tra hoá đơn {%endblock%} {%block content%}
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{%static 'normarlize.css'%}" />
-    <link rel="stylesheet" href="{%static 'invoiceConfirm.css'%}" />
-    <title>Xác nhận hoá đơn</title>
-  </head>
-  <body>
-    <div class="invoice_container">
-      <div class="sidebar order_sidebar">
-        <div class="sidebar_user">
-          <img src="{%static 'assets/images/avatar.svg'%}" alt="" />
-          <div class="name">
-            Xin chào, <span style="font-weight: bold">Nguyễn Hoàng Anh</span>
-          </div>
-          <a href="#">Chỉnh sửa thông tin</a>
-        </div>
-        <a href="{%url 'shop:home'%}" class="sidebar_item" id="dashboard"
-          >Dashboard</a
-        >
-        <a href="{%url 'shop:order'%}" class="sidebar_item" id="Order"
-          >Thuê VPS</a
-        >
-        <a href="{%url 'shop:VPSList'%}" class="sidebar_item" id="VPSList"
-          >Danh sách VPS</a
-        >
-        <a
-          href="{%url 'shop:invoiceList'%}"
-          class="sidebar_item"
-          id="invociesList"
-          >Danh sách hoá đơn</a
-        >
+<div class="invoice_content">
+  <div class="form">
+    <div class="invoice_header">Chi tiết hoá đơn</div>
+    <hr />
+    <form action="{%url 'shop:invoiceDetail'%}" method="post">
+      {%csrf_token%}
+      <div class="invoice_details">
+        <div class="invoice_VPSType">NAT VPS</div>
+        <div class="invoice_VPSPlan">N1</div>
+        <div class="invoice_CPU"><span>1</span> CPU Core(s)</div>
+        <div class="invoice_RAM"><span>2</span> GB RAM</div>
+        <div class="invoice_SSD"><span>20</span> GB SSD</div>
+        <div class="invoice_OS">Window Server 2012R2 v18.1</div>
       </div>
-      <div class="invoice_content_container">
-        <div class="invoice_content">
-          <div class="invoice_header">Chi tiết hoá đơn</div>
-          <hr />
-          <form action="{%url 'shop:invoiceDetail'%}" method="post">
-            {%csrf_token%}
-            <div class="invoice_details">
-              <div class="invoice_VPSType">NAT VPS</div>
-              <div class="invoice_VPSPlan">N1</div>
-              <div class="invoice_CPU"><span>1</span> CPU Core(s)</div>
-              <div class="invoice_RAM"><span>2</span> GB RAM</div>
-              <div class="invoice_SSD"><span>20</span> GB SSD</div>
-              <div class="invoice_OS">Window Server 2012R2 v18.1</div>
-            </div>
-            <hr />
-            <div class="invoice_inputs">
-              <div class="quantity_input">
-                <div>Số lượng:</div>
-                <input type="number" name="quantity" id="quantity" value="1" />
-              </div>
-              <div class="time_input">
-                <div>Thời gian (tháng)</div>
-                <input type="number" name="time" id="time" value="1" />
-              </div>
-            </div>
-            <hr />
-            <div class="invoice_price">
-              Tổng giá tiền:
-              <p>60 000 VND</p>
-            </div>
-            <hr />
-            <div class="invoice_payment_method">
-              <div>Chọn phương thức thanh toán</div>
-              <div class="payment_select">
-                <div class="payment selected">VNPAY</div>
-                <div class="payment">VISA</div>
-                <div class="payment">Momo</div>
-                <div class="payment">ZaloPay</div>
-              </div>
-            </div>
-            <div class="invoice_next">
-              <button class="green">Xác nhận</button>
-            </div>
-          </form>
+      <hr />
+      <div class="invoice_inputs">
+        <div class="quantity_input">
+          <div>Số lượng:</div>
+          <input type="number" name="quantity" id="quantity" value="1" />
+        </div>
+        <div class="time_input">
+          <div>Thời gian (tháng)</div>
+          <input type="number" name="time" id="time" value="1" />
         </div>
       </div>
-    </div>
-  </body>
-</html>
+      <hr />
+      <div class="invoice_price">
+        Tổng giá tiền:
+        <p>60 000 VND</p>
+      </div>
+      <hr />
+      <div class="invoice_payment_method">
+        <div>Chọn phương thức thanh toán</div>
+        <div class="payment_select">
+          <div class="payment selected">VNPAY</div>
+          <div class="payment">VISA</div>
+          <div class="payment">Momo</div>
+          <div class="payment">ZaloPay</div>
+        </div>
+      </div>
+      <div class="invoice_next">
+        <button class="green">Xác nhận</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{%endblock%}

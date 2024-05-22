@@ -1,60 +1,3 @@
-.invoiceList_container {
-    display         : flex;
-    flex-wrap       : nowrap;
-    background-color: #f0f2f5;
-}
-
-.sidebar {
-    width           : 20%;
-    max-width       : 300px;
-    min-width       : 200px;
-    background-image: linear-gradient(195deg, #42424a 0%, #191919 100%);
-    color           : white;
-    padding         : 24px 12px;
-    height          : 100vh;
-}
-
-.sidebar .sidebar_user {
-    text-align   : center;
-    margin-bottom: 40px;
-}
-
-.sidebar .sidebar_user>* {
-    margin-bottom: 24px;
-}
-
-.sidebar .sidebar_user img {
-    width: 100px;
-}
-
-.sidebar .sidebar_user a {
-    font-weight: bold;
-}
-
-.sidebar .sidebar_user a:hover {
-    text-decoration: underline;
-}
-
-
-.sidebar .sidebar_item {
-    display      : block;
-    padding      : 16px 8px;
-    margin       : 4px 8px;
-    border-radius: 10px;
-}
-
-.invociesList_sidebar #invociesList,
-.sidebar_item:hover {
-    background-color: rgb(199, 199, 199, .2)
-}
-
-.invoiceList_content {
-    width           : 80%;
-    height          : fit-content;
-    padding         : 24px 64px;
-    background-color: white;
-}
-
 .invoiceList_content>div {
     margin: 24px
 }
@@ -67,33 +10,33 @@
     margin-bottom: 64px;
 }
 
-.invoiceList_content .table .row {
+.table .row {
     display      : flex;
     flex-wrap    : nowrap;
     margin-bottom: 8px;
 }
 
-.invoiceList_content .table .row:nth-child(2n) {
-    background-color: #f0f2f5;
+.table .row:nth-child(2n) {
+    background-color: white;
 }
 
-.invoiceList_content .table .row.head,
-.invoiceList_content .table .row .col a {
+.table .row.head,
+.table .row .col a {
     font-weight: bold;
 }
 
-.invoiceList_content .table .row .col {
+.table .row .col {
     width     : 100%;
     text-align: center;
     padding   : 16px 8px;
 }
 
-.invoiceList_content .table .row.head .col,
-.invoiceList_content .table .row .col a:hover,
-.invoiceList_content .table .row .col:nth-child(3) {
+.table .row.head .col,
+.table .row .col a:hover,
+.table .row .col:nth-child(3) {
     color: #ff6000;
 }
 
-.invoiceList_content .table .row .col:nth-child(3) {
+.table .row .col:nth-child(3) {
     font-weight: bold;
 }

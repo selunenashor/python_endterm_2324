@@ -6,14 +6,6 @@ from .models import CustomUser
 active_username = None
 
 
-def home(request):
-    global active_username
-    if active_username is not None:
-        return render(request, 'home.html')
-    else:
-        return redirect('/login')
-
-
 def login(request):
     global active_username
     if request.method == 'POST':
@@ -49,24 +41,52 @@ def register(request):
         return render(request, 'register.html', {'form': RegisterForm()})
 
 
+def home(request):
+    global active_username
+    if active_username is not None:
+        return render(request, 'home.html', {'sidebar_menu': 1})
+    else:
+        return redirect('/login')
+
+
 def order(request):
-    return render(request, "order.html")
+    global active_username
+    if active_username is not None:
+        return render(request, 'order.html', {'sidebar_menu': 2})
+    else:
+        return redirect('/login')
 
 
 def VPSList(request):
-    return render(request, 'VPSList.html')
+    global active_username
+    if active_username is not None:
+        return render(request, 'VPSList.html', {'sidebar_menu': 3})
+    else:
+        return redirect('/login')
 
 
 def invoiceList(request):
-    return render(request, 'invoiceList.html')
+    global active_username
+    if active_username is not None:
+        return render(request, 'invoiceList.html', {'sidebar_menu': 4})
+    else:
+        return redirect('/login')
 
 
 def VPSDetail(request):
-    return render(request, 'VPSDetail.html')
+    global active_username
+    if active_username is not None:
+        return render(request, 'VPSDetail.html', {'sidebar_menu': 3})
+    else:
+        return redirect('/login')
 
 
 def invoiceDetail(request):
-    return render(request, 'invoiceDetail.html')
+    global active_username
+    if active_username is not None:
+        return render(request, 'invoiceDetail.html', {'sidebar_menu': 4})
+    else:
+        return redirect('/login')
 
 
 def invoiceConfirm(request):

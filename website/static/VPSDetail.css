@@ -1,88 +1,31 @@
-.VPSDetail_container {
-    display         : flex;
-    flex-wrap       : nowrap;
-    background-color: #f0f2f5;
-}
-
-.sidebar {
-    width           : 20%;
-    max-width       : 300px;
-    min-width       : 200px;
-    background-image: linear-gradient(195deg, #42424a 0%, #191919 100%);
-    color           : white;
-    padding         : 24px 12px;
-    height          : 100vh;
-}
-
-.sidebar .sidebar_user {
-    text-align   : center;
-    margin-bottom: 40px;
-}
-
-.sidebar .sidebar_user>* {
-    margin-bottom: 24px;
-}
-
-.sidebar .sidebar_user img {
-    width: 100px;
-}
-
-.sidebar .sidebar_user a {
-    font-weight: bold;
-}
-
-.sidebar .sidebar_user a:hover {
-    text-decoration: underline;
-}
-
-
-.sidebar .sidebar_item {
-    display      : block;
-    padding      : 16px 8px;
-    margin       : 4px 8px;
-    border-radius: 10px;
-}
-
-.VPSDetail_sidebar #VPSList,
-.sidebar_item:hover {
-    background-color: rgb(199, 199, 199, .2)
-}
-
-.VPSDetail_content {
-    width           : 80%;
-    height          : fit-content;
-    padding         : 24px 64px;
-    background-color: white;
-}
-
 .VPSDetail_content>div {
     margin-bottom: 24px;
 }
 
-.VPSDetail_content .header {
+.header {
     font-size  : 32px;
     color      : #ff6000;
     font-weight: bold;
 }
 
-.VPSDetail_content .detail .row {
+.detail .row {
     display: flex;
     padding: 10px;
 }
 
-.VPSDetail_content .detail .row:nth-child(2n) {
-    background-color: #f0f2f5;
+.detail .row:nth-child(2n) {
+    background-color: white;
 }
 
-.VPSDetail_content .detail .row .name,
-.VPSDetail_content .detail .row .value {
+.detail .row .name,
+.detail .row .value {
     width: 100%;
 }
 
-.VPSDetail_content .detail .row .name {
+.detail .row .name {
     font-weight: bold;
 }
 
-.VPSDetail_content .action button {
+.action button {
     padding: 12px;
 }

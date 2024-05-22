@@ -1,75 +1,41 @@
-{%load static%}
+{%extends 'layout.html'%} {% load static %} {%block css%}
+<link rel="stylesheet" href="{%static 'VPSDetail.css'%}" />
+{%endblock%} {%block title%} Chi tiết VPS {%endblock%} {%block content%}
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{%static 'normarlize.css'%}" />
-    <link rel="stylesheet" href="{%static 'VPSDetail.css'%}" />
-    <title>Thông tin VPS</title>
-  </head>
-  <body>
-    <div class="VPSDetail_container">
-      <div class="sidebar VPSDetail_sidebar">
-        <div class="sidebar_user">
-          <img src="{%static 'assets/images/avatar.svg'%}" alt="" />
-          <div class="name">
-            Xin chào, <span style="font-weight: bold">Nguyễn Hoàng Anh</span>
-          </div>
-          <a href="#">Chỉnh sửa thông tin</a>
-        </div>
-        <a href="{%url 'shop:home'%}" class="sidebar_item" id="dashboard"
-          >Dashboard</a
-        >
-        <a href="{%url 'shop:order'%}" class="sidebar_item" id="Order"
-          >Thuê VPS</a
-        >
-        <a href="{%url 'shop:VPSList'%}" class="sidebar_item" id="VPSList"
-          >Danh sách VPS</a
-        >
-        <a
-          href="{%url 'shop:invoiceList'%}"
-          class="sidebar_item"
-          id="invociesList"
-          >Danh sách hoá đơn</a
-        >
-      </div>
-      <div class="VPSDetail_content">
-        <div class="header">Thông tin chi tiết VPS</div>
-        <div class="detail">
-          <div class="row">
-            <div class="name">VPS IP</div>
-            <div class="value">192.168.1.1</div>
-          </div>
-          <div class="row">
-            <div class="name">Trạng thái</div>
-            <div class="value"><span class="green">OK</span></div>
-          </div>
-          <div class="row">
-            <div class="name">Thông số</div>
-            <div class="value">1 CPU, 2048MB RAM, 20GB SSD Disk</div>
-          </div>
-          <div class="row">
-            <div class="name">OS</div>
-            <div class="value">Windows server 2012R2 v18.1</div>
-          </div>
-          <div class="row">
-            <div class="name">Tài khoản VPS mặc định</div>
-            <div class="value">Administrator</div>
-          </div>
-          <div class="row">
-            <div class="name">Mật khẩu VPS mặc định</div>
-            <div class="value">LEV169e488x</div>
-          </div>
-        </div>
-        <div class="action">
-          <button class="green">Khởi động</button>
-          <button class="red">Tắt VPS</button>
-          <button class="orange">Gia hạn VPS</button>
-          <button class="red">Huỷ VPS</button>
-        </div>
-      </div>
+<div class="VPSDetail_content">
+  <div class="header">Thông tin chi tiết VPS</div>
+  <div class="detail">
+    <div class="row">
+      <div class="name">VPS IP</div>
+      <div class="value">192.168.1.1</div>
     </div>
-  </body>
-</html>
+    <div class="row">
+      <div class="name">Trạng thái</div>
+      <div class="value"><span class="green">OK</span></div>
+    </div>
+    <div class="row">
+      <div class="name">Thông số</div>
+      <div class="value">1 CPU, 2048MB RAM, 20GB SSD Disk</div>
+    </div>
+    <div class="row">
+      <div class="name">OS</div>
+      <div class="value">Windows server 2012R2 v18.1</div>
+    </div>
+    <div class="row">
+      <div class="name">Tài khoản VPS mặc định</div>
+      <div class="value">Administrator</div>
+    </div>
+    <div class="row">
+      <div class="name">Mật khẩu VPS mặc định</div>
+      <div class="value">LEV169e488x</div>
+    </div>
+  </div>
+  <div class="action">
+    <button class="green">Khởi động</button>
+    <button class="red">Tắt VPS</button>
+    <button class="orange">Gia hạn VPS</button>
+    <button class="red">Huỷ VPS</button>
+  </div>
+</div>
+
+{%endblock%}
