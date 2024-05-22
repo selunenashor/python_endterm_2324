@@ -13,9 +13,18 @@ body {
 
 }
 
+.login_container .err_message {
+    color        : rgb(255, 45, 45);
+    margin-bottom: 8px;
+}
+
 .login_container .login_field>input,
 .login_container .login_button_field>button {
     width: 100%;
+}
+
+.login_container .login_button_field>a {
+    padding: 12px 0;
 }
 
 .login_container .login_field {

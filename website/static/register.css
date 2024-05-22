@@ -18,6 +18,10 @@ body {
     width: 100%;
 }
 
+.register_container .register_button_field>a {
+    padding: 12px 0
+}
+
 .register_container .register_field {
     margin-bottom: 24px;
 }
@@ -34,4 +38,10 @@ body {
     padding       : 12px 16px;
     margin        : 8px 0;
     width         : 100%;
+}
+
+.register_container .register_field .err_message {
+    color        : rgb(255, 45, 45);
+    margin-bottom: 8px;
+
 }
