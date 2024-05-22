@@ -17,16 +17,12 @@
         <div class="register_field">
           {% if err_code %} {% if err_code == 1 %}
           <div class="err_message">
-            Tài khoản phải chứa 6-20 kí tự, không có kí tự đặc biệt và không bắt
-            đầu bằng số
+            Tài khoản phải chứa 6-20 kí tự, không có kí tự đặc biệt, không bắt
+            đầu bằng số và không có dấu cách
           </div>
-          {% endif %}
-          {% if err_code == 5 %}
-          <div class="err_message">
-            Tài khoản đã tồn tại
-          </div>
-          {% endif %} {% endif %} {{form.username}} {% if err_code %} 
-          {% if err_code == 2 %}
+          {% endif %} {% if err_code == 5 %}
+          <div class="err_message">Tài khoản đã tồn tại</div>
+          {% endif %} {% endif %} {{form.username}} {% if err_code %} {% if err_code == 2 %}
           <div class="err_message">Mật khẩu phải dài từ 6-20 kí tự</div>
           {% endif %} {% endif %}{{form.password}} {% if err_code %} {% if err_code == 3 %}
           <div class="err_message">Mật khẩu không trùng khớp</div>

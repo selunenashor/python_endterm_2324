@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .forms import LoginForm, RegisterForm
-from .models import CustomUser
+from .models import CustomUser, VPS, Invoice
 
 active_username = None
 
@@ -44,7 +44,7 @@ def register(request):
 def home(request):
     global active_username
     if active_username is not None:
-        return render(request, 'home.html', {'sidebar_menu': 1})
+        return render(request, 'home.html', {'sidebar_menu': 1, 'user': CustomUser.objects.get(pk=active_username).username})
     else:
         return redirect('/login')
 
@@ -52,7 +52,7 @@ def home(request):
 def order(request):
     global active_username
     if active_username is not None:
-        return render(request, 'order.html', {'sidebar_menu': 2})
+        return render(request, 'order.html', {'sidebar_menu': 2, 'user': CustomUser.objects.get(pk=active_username).username})
     else:
         return redirect('/login')
 
@@ -60,7 +60,7 @@ def order(request):
 def VPSList(request):
     global active_username
     if active_username is not None:
-        return render(request, 'VPSList.html', {'sidebar_menu': 3})
+        return render(request, 'VPSList.html', {'sidebar_menu': 3, 'user': CustomUser.objects.get(pk=active_username).username, 'vpsList': VPS.objects.filter(id_user=active_username)})
     else:
         return redirect('/login')
 
@@ -68,32 +68,41 @@ def VPSList(request):
 def invoiceList(request):
     global active_username
     if active_username is not None:
-        return render(request, 'invoiceList.html', {'sidebar_menu': 4})
+        return render(request, 'invoiceList.html', {'sidebar_menu': 4, 'user': CustomUser.objects.get(pk=active_username).username, 'invoiceList': Invoice.objects.filter(id_user=active_username)})
     else:
         return redirect('/login')
 
 
-def VPSDetail(request):
+def VPSDetail(request, id):
     global active_username
     if active_username is not None:
-        return render(request, 'VPSDetail.html', {'sidebar_menu': 3})
+        data = VPS.objects.get(pk=id)
+        return render(request, 'VPSDetail.html', {'sidebar_menu': 3, 'user': CustomUser.objects.get(pk=active_username).username, 'vps': data})
     else:
         return redirect('/login')
 
 
-def invoiceDetail(request):
+def invoiceDetail(request, id):
     global active_username
     if active_username is not None:
-        return render(request, 'invoiceDetail.html', {'sidebar_menu': 4})
+        data = Invoice.objects.get(pk=id)
+        return render(request, 'invoiceDetail.html', {'sidebar_menu': 4, 'user': CustomUser.objects.get(pk=active_username).username, 'invoice': data})
     else:
         return redirect('/login')
 
 
 def invoiceConfirm(request):
-    return render(request, 'invoiceConfirm.html')
+    global active_username
+    if active_username is not None:
+        return render(request, 'invoiceConfirm.html', {'sidebar_menu': 2, 'user': CustomUser.objects.get(pk=active_username).username})
+    else:
+        return redirect('/login')
 
 
 def create_user(username, password, email, phone):
-    new_user = CustomUser(
-        username=username, password=password, email=email, phone=phone)
+    new_user = CustomUser()
+    new_user.username = username
+    new_user.password = password
+    new_user.email = email
+    new_user.phone = phone
     new_user.save()

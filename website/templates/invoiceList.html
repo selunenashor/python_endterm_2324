@@ -2,6 +2,7 @@
 <link rel="stylesheet" href="{%static 'invoiceList.css'%}" />
 {%endblock%} {%block title%} Danh sách hoá đơn {%endblock%} {%block content%}
 
+{%if invoiceList%}
 <div class="invoiceList_content">
   <div class="show">
     Hiển thị
@@ -25,40 +26,35 @@
       <div class="col">Ngày khởi tạo</div>
       <div class="col">Ngày hoàn tất</div>
     </div>
-
+    {%for invoice in invoiceList%}
     <div class="row">
       <div class="col">
-        <a href="{%url 'shop:invoiceDetail'%}">20240522023246</a>
+        <a href="{%url 'shop:invoiceDetail' invoice.id%}">{{invoice.id}}</a>
       </div>
-      <div class="col"><span class="green">Renew</span></div>
-      <div class="col">60 000 VND</div>
-      <div class="col"><span class="green">Done</span></div>
-      <div class="col">VNPAY</div>
-      <div class="col">2024-05-22</div>
-      <div class="col">2024-05-22</div>
-    </div>
-    <div class="row">
       <div class="col">
-        <a href="{%url 'shop:invoiceDetail'%}">20240522023246</a>
+        <span class="green">
+        {%if invoice.type == 1%}CREATE{%endif%}
+        {%if invoice.type == 2%}RENEW{%endif%}
+        </span>
       </div>
-      <div class="col"><span class="green">Create</span></div>
-      <div class="col">60 000 VND</div>
-      <div class="col"><span class="gray">canceled</span></div>
-      <div class="col">Not selected</div>
-      <div class="col">2024-05-22</div>
-      <div class="col">2024-05-22</div>
-    </div>
-    <div class="row">
+      <div class="col">{{invoice.price}} VND</div>
       <div class="col">
-        <a href="{%url 'shop:invoiceDetail'%}">20240522023246</a>
+        {%if invoice.status == 1%}
+        <span class="blue">PENDING</span>
+        {%endif%}
+        {%if invoice.status == 0%}
+        <span class="gray">CANCELED</span>
+        {%endif%}
+        {%if invoice.status == 2%}
+        <span class="green">DONE</span>
+        {%endif%}
       </div>
-      <div class="col"><span class="green">Create</span></div>
-      <div class="col">60 000 VND</div>
-      <div class="col"><span class="blue">pending</span></div>
-      <div class="col">Momo</div>
-      <div class="col">2024-05-22</div>
-      <div class="col">2024-05-22</div>
+      <div class="col">{{invoice.paymentMethod}}</div>
+      <div class="col">{{invoice.createAt|date:"Y-m-d"}}</div>
+      <div class="col">{{invoice.finished|date:"Y-m-d"}}</div>
     </div>
+    {%endfor%}
   </div>
 </div>
+{%endif%}
 {%endblock%}

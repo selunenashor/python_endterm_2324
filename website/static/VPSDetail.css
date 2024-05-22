@@ -13,6 +13,10 @@
     padding: 10px;
 }
 
+.detail .row:first-child .value{
+    font-weight: bold;
+}
+
 .detail .row:nth-child(2n) {
     background-color: white;
 }

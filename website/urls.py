@@ -12,7 +12,7 @@ urlpatterns = [
     path("order", views.order, name="order"),
     path("VPSList", views.VPSList, name="VPSList"),
     path("invoiceList", views.invoiceList, name="invoiceList"),
-    path("VPSDetail", views.VPSDetail, name="VPSDetail"),
-    path("invoiceDetail", views.invoiceDetail, name="invoiceDetail"),
+    path("VPSDetail/<int:id>", views.VPSDetail, name="VPSDetail"),
+    path("invoiceDetail/<str:id>", views.invoiceDetail, name="invoiceDetail"),
     path("invoiceConfirm", views.invoiceConfirm, name="invoiceConfirm")
 ]

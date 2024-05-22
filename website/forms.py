@@ -22,8 +22,7 @@ class LoginForm(forms.Form):
     def getID(self):
         username = self.data['username']
         password = self.data['password']
-
-        return CustomUser.objects.filter(username=username, password=password)[0].getID()
+        return CustomUser.objects.get(username=username, password=password).id
 
 
 class RegisterForm(forms.Form):
@@ -50,7 +49,7 @@ class RegisterForm(forms.Form):
         passwordConfirm = self.data.get('passwordConfirm')
         email = self.data['email']
         phone = self.data['phone']
-        if len(username) < 6 or len(username) > 20 or (not username.isalnum()) or username[0].isdigit():
+        if len(username) < 6 or len(username) > 20 or (not username.isalnum()) or (' ' in username) or username[0].isdigit():
             return {
                 'code': 1
             }

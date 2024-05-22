@@ -1,34 +1,41 @@
 {%extends 'layout.html'%} {% load static %} {%block css%}
 <link rel="stylesheet" href="{%static 'VPSDetail.css'%}" />
-{%endblock%} {%block title%} Chi tiết VPS {%endblock%} {%block content%}
-
+{%endblock%} {%block title%} Chi tiết VPS {%endblock%} {%block content%} {%if vps%}
 <div class="VPSDetail_content">
   <div class="header">Thông tin chi tiết VPS</div>
   <div class="detail">
     <div class="row">
       <div class="name">VPS IP</div>
-      <div class="value">192.168.1.1</div>
+      <div class="value">{{vps.ip}}</div>
     </div>
     <div class="row">
       <div class="name">Trạng thái</div>
-      <div class="value"><span class="green">OK</span></div>
+      <div class="value">
+        {%if vps.status == 1%}
+        <span class="green">RUNNING</span></div>
+        {%endif%}
+        {%if vps.status == 2%}
+        <span class="red">STOPPED</span></div>
+        {%endif%}
+      </div>
+      <div class="row">
+        <div class="name">Thông số</div>
+        <div class="value">{{vps.CPU}} core(s) CPU, {{vps.RAM}}GB RAM, {{vps.SSD}}GB SSD</div>
+      </div>
+      <div class="row">
+        <div class="name">OS</div>
+        <div class="value">{{vps.OS.name}}</div>
+      </div>
+      <div class="row">
+        <div class="name">Tài khoản VPS mặc định</div>
+        <div class="value">{{vps.username}}</div>
+      </div>
+      <div class="row">
+        <div class="name">Mật khẩu VPS mặc định</div>
+        <div class="value">{{vps.password}}</div>
+      </div>
     </div>
-    <div class="row">
-      <div class="name">Thông số</div>
-      <div class="value">1 CPU, 2048MB RAM, 20GB SSD Disk</div>
-    </div>
-    <div class="row">
-      <div class="name">OS</div>
-      <div class="value">Windows server 2012R2 v18.1</div>
-    </div>
-    <div class="row">
-      <div class="name">Tài khoản VPS mặc định</div>
-      <div class="value">Administrator</div>
-    </div>
-    <div class="row">
-      <div class="name">Mật khẩu VPS mặc định</div>
-      <div class="value">LEV169e488x</div>
-    </div>
+    
   </div>
   <div class="action">
     <button class="green">Khởi động</button>
@@ -37,5 +44,4 @@
     <button class="red">Huỷ VPS</button>
   </div>
 </div>
-
-{%endblock%}
+{%endif%} {%endblock%}

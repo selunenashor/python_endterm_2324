@@ -17,35 +17,28 @@
   <div class="table">
     <div class="row head">
       <div class="col">IP</div>
-      <div class="col">Tài khoản VPS</div>
-      <div class="col">Mật khẩu VPS</div>
       <div class="col">Mã VPS</div>
       <div class="col">Giá thành</div>
       <div class="col">Ngày hết hạn</div>
       <div class="col">Trạng thái</div>
     </div>
+    {%if vpsList %} {%for vps in vpsList%}
     <div class="row">
       <div class="col">
-        <a href="{%url 'shop:VPSDetail'%}">192.168.1.1</a>
+        <a href="{%url 'shop:VPSDetail' vps.id%}">{{vps.ip}}</a>
       </div>
-      <div class="col">user1</div>
-      <div class="col">***</div>
-      <div class="col">Basic</div>
-      <div class="col">$10/month</div>
-      <div class="col">2024-12-31</div>
-      <div class="col"><span class="green">OK</span></div>
-    </div>
-    <div class="row">
+      <div class="col">{{vps.plan}}</div>
+      <div class="col">{{ vps.price }} VND</div>
+      <div class="col">{{vps.expired_date|date:"Y-m-d"}}</div>
       <div class="col">
-        <a href="{%url 'shop:VPSDetail'%}">192.168.1.2</a>
-      </div>
-      <div class="col">user2</div>
-      <div class="col">***</div>
-      <div class="col">Pro</div>
-      <div class="col">$20/month</div>
-      <div class="col">2024-11-30</div>
-      <div class="col"><span class="red">Suspend</span></div>
+        {%if vps.status == 1%}
+        <span class="green">RUNNING</span></div>
+        {%endif%}
+        {%if vps.status == 2%}
+        <span class="red">STOPPED</span></div>
+        {%endif%}
     </div>
+    {%endfor%} {%endif%}
   </div>
 </div>
 {%endblock%}
