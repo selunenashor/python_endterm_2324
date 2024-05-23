@@ -13,8 +13,7 @@
       <div class="name">Loại hoá đơn</div>
       <div class="value">
         <span class="green">
-          {%if invoice.type == 1%}CREATE{%endif%}
-          {%if invoice.type == 2%}RENEW{%endif%}
+          {%if invoice.type == 1%}CREATE{%endif%} {%if invoice.type == 2%}RENEW{%endif%}
         </span>
       </div>
     </div>
@@ -43,15 +42,22 @@
       <div class="value">{{invoice.price}} VND</div>
     </div>
   </div>
-  {%if invoice.status == 1%}
+  <div class="button_container">
+    {%if invoice.status == 1%}
+  <form action="{%url 'shop:cancelPayment' invoice.id%}" method="post">
+    {%csrf_token%}
+    <div class="button">
+      <button class="red">Hủy thanh toán</button>
+    </div>
+  </form>
+  {%if invoice.type == 1%}
   <form action="{%url 'shop:createVPS' invoice.id%}" method="post">
     {%csrf_token%}
     <div class="button">
       <button class="green">Xác nhận thanh toán</button>
     </div>
   </form>
-  {%endif%}
-  {%if invoice.status == 2%}
+  {%endif%} {%if invoice.type == 2%}
   <form action="{%url 'shop:renewVPS' invoice.id%}" method="post">
     {%csrf_token%}
     <div class="button">
@@ -59,5 +65,9 @@
     </div>
   </form>
   {%endif%}
+  {%endif%} 
+  </div>
 </div>
-{%endif%} {%endblock%}
+
+  {%endif%}
+  {%endblock%}

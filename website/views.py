@@ -250,13 +250,24 @@ def invoice_renewVPS(request):
     if active_user is not None:
         form = RenewForm(data=request.POST)
         invoice = form.getInvoiceData()
+        quantity = 1
+        if(invoice['quantity']): quantity = invoice['quantity']
         create_invoice(invoice['id'], invoice['id_user'], invoice['type'], invoice['price'],
-                       invoice['VPSType'], invoice['paymentMethod'], invoice['createAt'], invoice['finished'], 1, invoice['time'], invoice['OS'], invoice['targetVPS'])
+                       invoice['VPSType'], invoice['paymentMethod'], invoice['createAt'], invoice['finished'], quantity , invoice['time'], invoice['OS'], invoice['targetVPS'])
         data = Invoice.objects.get(pk=invoice['id'])
         return redirect('/invoiceDetail/' + str(data.id))
     else:
         return redirect('/login')
 
+def cancelPayment(request, id):
+    global active_user
+    if active_user is not None:
+        invoice = Invoice.objects.get(pk=id)
+        invoice.status = 0
+        invoice.save()
+        return redirect('/invoiceDetail/' + id)
+    else: 
+        return redirect('/login')
 
 def deleteVPS(request, id):
     vps = VPS.objects.get(pk=id)

@@ -14,7 +14,7 @@ urlpatterns = [
     path("order/os", views.orderStep3, name="order3"),
     path("order/confirm", views.orderConfirm, name="orderConfirm"),
     path("createVPS/<str:id>",views.createVPS,name="createVPS"),
-    path("renewVPS/<str:id>",views.renewVPS,name="createVPS"),
+    path("renewVPS/<str:id>",views.renewVPS,name="renewVPS"),
     path("VPSList", views.VPSList, name="VPSList"),
     path("invoiceList", views.invoiceList, name="invoiceList"),
     path("VPSDetail/<int:id>", views.VPSDetail, name="VPSDetail"),
@@ -23,5 +23,6 @@ urlpatterns = [
     path("VPSRenewComplete", views.invoice_renewVPS, name="VPSRenewComplete"),
     path("VPSDelete/<int:id>",views.deleteVPS, name="VPSDelete"),
     path("invoiceDetail/<str:id>", views.invoiceDetail, name="invoiceDetail"),
+    path("invoiceCancel/<str:id>", views.cancelPayment, name="cancelPayment")
     
 ]

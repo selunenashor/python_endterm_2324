@@ -36,6 +36,11 @@
     padding: 12px;
 }
 
+.button_container{
+    display: flex;
+    gap:16px
+}
+
 .button{
     text-align: center;   
 }
