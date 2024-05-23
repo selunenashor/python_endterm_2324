@@ -19,6 +19,7 @@ class InvoiceTemp:
         self.RAM = RAM
         self.SSD = SSD
         self.OS = OS.id
+        self.OS_name = OS.name
         self.price = price
         self.list_payment = list_payment
         self.id_user = id_user
